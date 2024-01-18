@@ -23,3 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+import { runLighthouseAudit } from '../lighthouse/lighthouse';
+
+const handleLighthouseAudit = () => {
+  return cy.url().then(async (url) => {
+    const results = await runLighthouseAudit(url);
+    // do something with the results
+  });
+};
+
+Cypress.Commands.add('lighthouse', handleLighthouseAudit);
